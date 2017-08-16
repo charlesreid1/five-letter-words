@@ -1,5 +1,6 @@
 import random, math, operator
 from pprint import pprint 
+from get_words import get_words
 
 random.seed(1337)
 
@@ -29,16 +30,9 @@ def word2vec(word):
 def print_tuple(e):
     print("Distance between {0:s} and {1:s} = {2:f}".format(*e))
 
-
 if __name__=="__main__":
 
-    # Load the file.
-    with open('sgb-words.txt','r') as f:
-        ## This includes \n at the end of each line:
-        #words = f.readlines()
-    
-        # This drops the \n at the end of each line:
-        words = f.read().splitlines()
+    words = get_words()
 
     eds = []
     for i in range(100):
