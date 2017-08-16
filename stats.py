@@ -37,9 +37,26 @@ for word in words:
         else:
             bigrams[bigram] = 1
 
-    
-#pprint("\n\n")
-#pprint(letters)
-#pprint("\n\n")
-#pprint(bigrams)
+# To print out the dict in sorted order,
+# convert to a list of tuples.
+# This creates a list of (key,value) tuples, 
+# and sorts them by value (itemgettr(1))
+import operator
+sorted_letters = sorted(letters.items(), key=operator.itemgetter(1))
+sorted_bigrams = sorted(bigrams.items(), key=operator.itemgetter(1))
+
+print("-"*20)
+print("\n\n")
+pprint(sorted_letters)
+
+print("-"*20)
+print("\n\n")
+pprint(sorted_bigrams)
+
+print("-"*20)
+print("\n\n")
+pprint(bigrams['ch'])
+pprint(bigrams['ar'])
+pprint(bigrams['le'])
+pprint(bigrams['es'])
 
