@@ -1,23 +1,10 @@
-from pprint import pprint 
-
 """
 stats.py 
 
 Compute statistics of the 5-letter word collection from the Stanford GraphBase.
 """
-
-def get_words():
-    # Load the file.
-    with open('sgb-words.txt','r') as f:
-        ## This includes \n at the end of each line:
-        #words = f.readlines()
-    
-        # This drops the \n at the end of each line:
-        words = f.read().splitlines()
-
-    return words
-
-
+from pprint import pprint 
+from get_words import get_words
 
 if __name__=="__main__":
 
@@ -50,15 +37,12 @@ if __name__=="__main__":
     sorted_letters = sorted(letters.items(), key=operator.itemgetter(1))
     sorted_bigrams = sorted(bigrams.items(), key=operator.itemgetter(1))
     
-    print("-"*20)
     print("\n\n")
     pprint(sorted_letters)
     
-    print("-"*20)
     print("\n\n")
     pprint(sorted_bigrams)
     
-    print("-"*20)
     print("\n\n")
     pprint(bigrams['ch'])
     pprint(bigrams['ar'])
