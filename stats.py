@@ -43,9 +43,3 @@ if __name__=="__main__":
     print("\n\n")
     pprint(sorted_bigrams)
     
-    print("\n\n")
-    pprint(bigrams['ch'])
-    pprint(bigrams['ar'])
-    pprint(bigrams['le'])
-    pprint(bigrams['es'])
-
