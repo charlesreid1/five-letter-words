@@ -2,7 +2,8 @@
 
 This repository contains Donald Knuth's GraphBase list of five-letter words,
 as well as scripts to run various combinatoric experiments, 
-graph algorithms, and other computational things.
+graph algorithms, and other algorithms to explore the 
+relationships among these words.
 
 The list of words comes from [[1]](http://www-cs-faculty.stanford.edu/~knuth/sgb.html) and is in the public domain.
 
@@ -26,6 +27,8 @@ surprisingly large number of such pairs.
 the traditional Euclidean distance definition but reinterprets distance to mean edit distance.
 
 ```lexico.py``` - find words that are sorted by lexicographic order (front to back, a-z). 
+
+```palindromes.py``` - look for five letter words that are either a palindrome, or a palindrome pair.
 
 
 ## Letter Coverage
