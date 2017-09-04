@@ -4,8 +4,8 @@ reverse_lexico.py
 Donald Knuth, Art of Computer Programming, Volume 4 Facsimile 0
 Exercise #30
 
-Each letter of the word "first" appears in correct lexicographic order.
-Find the first and last such words in the SGB words.
+Each letter of the word "spied" appears in reversed lexicographic order.
+Find more words whose letters appear in reverse lexicographic order.
 """
 from get_words import get_words
 
@@ -25,6 +25,16 @@ if __name__=="__main__":
 
     words = sorted(words)
 
+    count = 0
+    print("-"*40)
+    print("ALL lexicographically reversed words:")
+    for word in words:
+        if(in_reverse_sorted_order(word)):
+            print(word)
+            count += 1
+    print("{0:d} total.".format(count))
+
+    print("-"*40)
     for word in words:
         if(in_reverse_sorted_order(word)):
             print("First reverse lexicographically sorted word:")
@@ -33,6 +43,7 @@ if __name__=="__main__":
 
     words.reverse()
 
+    print("-"*40)
     for word in words:
         if(in_reverse_sorted_order(word)):
             print("Last lexicographically sorted word:")
