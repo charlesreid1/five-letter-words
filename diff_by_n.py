@@ -1,9 +1,7 @@
 """
 diff_by_n.py
 
-Donald Knuth
-Art of Computer Programming 
-Volume 4 Facsimile 0
+Donald Knuth, Art of Computer Programming, Volume 4 Facsimile 0
 Variation on Exercise #28
 
 Find pairs of SGB word vectors that differ by +/-n.
@@ -24,14 +22,14 @@ def diff_by_n(n):
         if k>5:
             break
 
-    #print("{0:d} words have a Euclidean distance of +/-{0:d}.".format(k,n))
+    print("{0:d} words have a Euclidean distance of +/-{0:d}.".format(k,n))
 
 
 if __name__=="__main__":
     words = get_words()
-    words = words[:1000]
+    #words = words[:1000]
 
-    for n in [1,2,3,4,5]:
+    for n in [2,3,4,5]:
         print("-"*40)
         print("Distance of {0:d}".format(n))
         diff_by_n(n)
