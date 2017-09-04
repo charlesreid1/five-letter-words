@@ -1,9 +1,7 @@
 """
 diff_by_one.py
 
-Donald Knuth
-Art of Computer Programming 
-Volume 4 Facsimile 0
+Donald Knuth, Art of Computer Programming, Volume 4 Facsimile 0
 Exercise #28
 
 Find pairs of SGB word vectors that differ by +/-1.
