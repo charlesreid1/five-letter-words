@@ -6,6 +6,7 @@ Exercise #27
 
 How many SGB words contain exactly k distinct letters, for 1 <= k <= 5?
 """
+from pprint import pprint
 from get_words import get_words
 
 if __name__=="__main__":
@@ -19,4 +20,7 @@ if __name__=="__main__":
                 lengths[i].append(word)
     
     for i in range(1,5+1):
+        print("-"*40)
         print("Number of words with {0:d} letters: {1:d}".format(i, len(lengths[i])))
+        print(", ".join(lengths[i][0:5]))
+
