@@ -13,11 +13,10 @@ if __name__=="__main__":
 
     lengths = [[] for i in range(5+1)]
 
-    for i in range(1,5+1):
-        for word in words:
-            if(len(set(word))==i):
-                lengths[i].append(word)
-    
+    for word in words:
+        k = len(set(word))
+        lengths[k].append(word)
+
     for i in range(1,5+1):
         print("-"*40)
         print("Number of words with {0:d} letters: {1:d}".format(i, len(lengths[i])))
