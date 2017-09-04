@@ -6,7 +6,6 @@ Exercise #27
 
 How many SGB words contain exactly k distinct letters, for 1 <= k <= 5?
 """
-from pprint import pprint
 from get_words import get_words
 
 if __name__=="__main__":
