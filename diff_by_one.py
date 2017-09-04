@@ -13,6 +13,8 @@ from euclidean_distance import euclidean_distance
 
 if __name__=="__main__":
     words = get_words()
+
+    ## To limit the output:
     #words = words[:1000]
 
     k = 0
