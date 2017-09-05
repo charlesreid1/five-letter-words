@@ -1,12 +1,10 @@
 """
-diff_by_one.py
+palindromes.py
 
-Donald Knuth
-Art of Computer Programming 
-Volume 4 Facsimile 0
+Donald Knuth, Art of Computer Programming, Volume 4 Facsimile 0
 Exercise #29
 
-Find all SGB words that are palindromes
+Find all SGB words that are palindromes (kayak)
 or that are palindrome pairs (regal lager)
 """
 from get_words import get_words
