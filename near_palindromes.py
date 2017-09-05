@@ -11,9 +11,9 @@ from get_words import get_words
 from euclidean_distance import euclidean_distance
 from pprint import pprint
 
-def is_near_palindrome(word):
-    test1 = euclidean_distance(word[0],word[4])<=1.0
-    test2 = euclidean_distance(word[1],word[3])<=1.0
+def is_near_palindrome(word,tol):
+    test1 = euclidean_distance(word[0],word[4])<=tol
+    test2 = euclidean_distance(word[1],word[3])<=tol
     if(test1 and test2):
         return True
     return False
@@ -24,9 +24,11 @@ if __name__=="__main__":
     knp = 0
     near_palindromes = []
 
-    # Check for palindromes
+    # Euclidean distance tolerance
+    tol = 2.0
+
     for i in range(len(words)):
-        if(is_near_palindrome(words[i])):
+        if(is_near_palindrome(words[i],tol)):
             knp += 1
             near_palindromes.append(words[i])
 
