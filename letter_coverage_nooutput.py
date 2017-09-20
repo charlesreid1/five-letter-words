@@ -31,6 +31,19 @@ def word2bitvector(word,N):
     return np.array(bit_vector)
 
 
+def printbv(bv):
+    """
+    Pretty printing for boolean bit vector
+    """
+    result = ""
+    for bit in bv:
+        if bit:
+            result += "1"
+        else:
+            result += "0"
+    return result
+
+
 def btsolution(min_key, min_val, words, bt):
     """
     Reconstruct the sequence of words that gives maximum coverage and minimum word count.
@@ -47,15 +60,6 @@ def btsolution(min_key, min_val, words, bt):
         prior_key = bt[prior_key]
     return reversed(solution)
 
-
-def printbv(bv):
-    result = ""
-    for bit in bv:
-        if bit:
-            result += "1"
-        else:
-            result += "0"
-    return result
 
 
 
@@ -110,6 +114,9 @@ if __name__=="__main__":
     # Backtracking: first word has no prior word
     bt[i] = -1
 
+
+    # Start by assuming the word by itself, 
+    # and then examine each possible pairing
     for i in range(1,len(words)):
         wi = words[i]
 
@@ -141,16 +148,6 @@ if __name__=="__main__":
         # Now loop over the rest of the words,
         # and look for a better solution.
         for j in reversed(range(0,i)):
-
-            ##########################
-            # Note: we need to consider the word j
-            # by itself, as the first word of our solution.
-            # 
-            # A bit lost here.
-            # Something's not quite right.
-            # While some of the intermediate calcs are ok,
-            # we are *never* finding better solutions...???
-            ##########################
 
             # Get the prior word
             wj = words[j]
