@@ -17,7 +17,7 @@ and that's about it.
 Exercises 26-37 of Knuth's Volume 4 Fascile 0 are intended as a warm up to get to know
 the SGB five letter word list. Solutions to these exercises are listed below.
 
-```distinct.py'```- computes the number of SGB words containing exactly k distinct letters.
+```distinct.py```- computes the number of SGB words containing exactly k distinct letters.
 
 ```diff_by_one.py``` - computes the number of words in the SGB that are off by a single letter,
 shifted a single place. For example, "might" and "night" or "large" and "marge". There is a 
@@ -30,8 +30,17 @@ the traditional Euclidean distance definition but reinterprets distance to mean 
 
 ```palindromes.py``` - look for five letter words that are either a palindrome, or a palindrome pair.
 
+### Variations
+
+```diff_by_n.py``` - computes words in SGB that have an edit distnace of n.
+
+```reverse_lexico.py``` - variation on ```lexico.py``` that finds words whose letters are in 
+reverse lexicographic order.
 
 ## Letter Coverage
+
+```letter_coverage.py``` - computes coverage of the alphabet (minimum number of words required 
+to provide X letters of the alphabet)
 
 Knuth mentions, in the text, a couple of facts about how many words cover how much
 of the alphabet. We authored a dynamic program to compute precisely this - given a 

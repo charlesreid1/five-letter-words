@@ -43,6 +43,6 @@ if __name__=="__main__":
 
     sorted_eds = sorted(eds, key=operator.itemgetter(2))
 
-    for e in sorted_eds:
+    for e in reversed(sorted_eds):
         print_tuple(e)
 
