@@ -110,19 +110,6 @@ if __name__=="__main__":
     # Backtracking: first word has no prior word
     bt[i] = -1
 
-    # -----------------------------------------------------------------
-    print("-"*20)
-    print("Analyzing word "+str(i)+" "+words[i])
-
-    print("----")
-    print("Prior word: there is none")
-    print("Best coverage bit vector at index 0: "+printbv(bestcoverage_bv[i]))
-    print("Best coverage bit vector sum: "+str(ones_bv[i]))
-    print("(This needs to > beat: nobody. there is none.")
-    # -----------------------------------------------------------------
-
-    #import pdb; pdb.set_trace();
-
     for i in range(1,len(words)):
         wi = words[i]
 
@@ -150,21 +137,6 @@ if __name__=="__main__":
 
         # Boolean: is this the first word in the sequence of solutions?
         first = True
-
-        # -----------------------------------------------------------------
-        print("-"*20)
-        print("For word "+str(i)+" "+words[i])
-        print("Bitvector coverage at index "+str(i)+" is: "+printbv(bestcoverage_bv[i]))
-        print("about to loop over remaining words...")
-        print("----")
-        print("Prior word: there is none")
-        print("Best coverage bit vector for first guess solution: "+printbv(bestcoverage_bv[i]))
-        print("Best coverage bit vector sum for first guess solution: "+str(ones_bv[i]))
-        print("Number of words in first guess solution: "+str(ws[i]))
-        print("(first guess solution is now current solution)")
-        # -----------------------------------------------------------------
-
-        #import pdb; pdb.set_trace();
 
         # Now loop over the rest of the words,
         # and look for a better solution.
@@ -195,28 +167,6 @@ if __name__=="__main__":
             # Number of words in (potential) new best solution
             ws_i = ws[j]+1
 
-            # -----------------------------------------------------------------
-            print("----")
-            print("Prior word: "+wj)
-            print("Best coverage bit vector at index "+str(i))
-            pprint(bestcoverage_bv_i)
-            print("")
-            print("Best coverage bit vector for this solution: "+printbv(bestcoverage_bv_i))
-            print("Best coverage bit vector sum for this solution: "+str(ones_bv_i))
-            print("Number of words in this solution: "+str(ws_i))
-            print("")
-            print("Best coverage bit vector for current solution: "+printbv(bestcoverage_bv[i]))
-            print("Best coverage bit vector sum for current solution: "+str(ones_bv[i]))
-            print("Number of words in current solution: "+str(ws[i]))
-            print("")
-            print( "Better ones? " + str(ones_bv_i > ones_bv[i]) )
-            print( "Same ones but better words? " + str((ones_bv_i==ones_bv[i]) and ws_i < ws[i]) )
-            if( (ones_bv_i > ones_bv[i]) or (ones_bv_i==ones_bv[i] and ws_i < ws[i]) ):
-                print("Replacing current solution with this solution.")
-            else:
-                print("Keeping current solution and tossing out this solution.")
-            # -----------------------------------------------------------------
-
             # If this solution is better than our current one,
             # overwrite the current solution.
             # (Better means, "more ones", or "same ones and fewer words".)
@@ -235,13 +185,6 @@ if __name__=="__main__":
             # It's tempting to stop early,
             # but what if we find the perfect 
             # solution right at the end?!?
-
-        # -----------------------------------------------------------------
-        print("----")
-        print("Final:")
-        pprint(bestcoverage_bv[i])
-        print("-"*20)
-        # -----------------------------------------------------------------
 
 
 
