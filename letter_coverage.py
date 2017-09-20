@@ -74,7 +74,7 @@ if __name__=="__main__":
     N = 15 
 
     words = get_words()
-    #words = words[:1000]
+    words = words[:1000]
 
 
     # Initialization:

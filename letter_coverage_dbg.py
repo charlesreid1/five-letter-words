@@ -266,5 +266,7 @@ if __name__=="__main__":
             min_key = ix
             min_val = ones_bv[ix]
 
-    pprint(list(btsolution(min_key, min_val, words, bt)))
+    solution = list(btsolution(min_key, min_val, words, bt))
+    print("Takes "+str(len(solution))+" words to cover "+str(N)+" letters")
+    pprint(solution)
 
