@@ -44,7 +44,8 @@ if __name__=="__main__":
 
     print("-"*40)
     print("Palindromes: \n")
-    pprint(palindromes)
+    print(", ".join(palindromes))
+    print("There are {0:d} palindromes.".format(kp))
 
     # Check for palindrome pairs
     for i in range(len(words)):
@@ -57,5 +58,6 @@ if __name__=="__main__":
 
     print("-"*40)
     print("Palindrome Pairs: \n")
-    pprint(palindrome_pairs)
-            
+    for pair in palindrome_pairs:
+        print(", ".join(pair))
+    print("There are {0:d} palindrome pairs.".format(kpp))
