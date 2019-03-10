@@ -10,6 +10,10 @@ from get_words import get_words
 
 
 def gen_variations(word,fragment,depth,variations):
+    """
+    Recursive backtracking method to assemble strings
+    differing by +/-1 at each position
+    """
     if depth==5:
         variations.add(fragment)
     else:
@@ -18,7 +22,6 @@ def gen_variations(word,fragment,depth,variations):
         fragment_m1 = fragment + chr(ord(word[depth])-1)
         for new_fragment in [fragment_p1,fragment_m1]:
             gen_variations(word,new_fragment,depth+1,variations)
-
 
 
 def get_all_variations(word):
@@ -34,6 +37,7 @@ def get_all_variations(word):
     word_variations = list(word_variations)
     return word_variations
 
+
 def main():
     """
     Find pairs of SGB word vectors that differ by +/-1 in each component.
@@ -42,17 +46,12 @@ def main():
     generate the 32 possible candidate matchings,
     and if they exist, add the pair to a set.
     """
-
-
     # words is a hash table (unsorted)
+    words = get_words()
+    #words = words[:1000]
     words = set(get_words())
 
-    ## To limit the output:
-    #words = words[:1000]
-
-    k = 0
-
-    # List of string tuples ('this','that')
+    # List of string tuples
     off_by_one = set()
 
     # Iterate over every word

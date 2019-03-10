@@ -5,6 +5,8 @@ as well as scripts to run various combinatoric experiments,
 graph algorithms, and other algorithms to explore the 
 relationships among these words.
 
+
+
 The list of words comes from [[1]](http://www-cs-faculty.stanford.edu/~knuth/sgb.html) and is in the public domain.
 
 ## Get Words
@@ -19,9 +21,21 @@ the SGB five letter word list. Solutions to these exercises are listed below.
 
 ```distinct.py```- computes the number of SGB words containing exactly k distinct letters.
 
-```diff_by_one.py``` - computes the number of words in the SGB that are off by a single letter,
-shifted a single place. For example, "might" and "night" or "large" and "marge". There is a 
-surprisingly large number of such pairs.
+```diff_by_one_fixed.py``` - (fixed 2019-03-09.) computes the number of words in the SGB
+that are off by a single letter in each position. An example is `rover` and `spuds`.
+Each corresponding letter is only different by one: `r -> s`, `o->p`, and so on.
+This uses recursive backtracking to generate possible matches for each word, and 
+uses a hash table to check for their existence in the original word set.
+
+There are 38 such pairs in the SGB.
+
+Also see [https://charlesreid1.com/wiki/F](https://charlesreid1.com/wiki/Letter_Coverage)..
+
+```diff_by_n_fixed.py``` - (added 2019-03-10.) using the corrected approach (above) to
+computing differences by 1, this generalizes the calculation to words that are different
+by a distance `d` for each letter position. There
+
+
 
 ```euclidean_distance.py``` - computes the euclidean distance between two words. This uses
 the traditional Euclidean distance definition but reinterprets distance to mean edit distance.
