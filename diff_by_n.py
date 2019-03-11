@@ -7,6 +7,7 @@ Variation on Exercise #28
 Find pairs of SGB word vectors that differ by +/-n.
 """
 from get_words import get_words
+import timeit
 
 def gen_variations(word,fragment,distance,depth,variations):
     """
@@ -46,11 +47,13 @@ def main():
     generate the possible candidate matchings,
     and if they exist, add the pair to a set.
     """
-    words = set(get_words())
+    words = get_words()
     #words = words[:1000]
     words = set(get_words())
 
-    for d in [2,3,4,5]:
+    for d in [1,2,3]:
+
+        tic = timeit.default_timer()
 
         # List of string tuples
         off_by_n = set()
@@ -75,10 +78,13 @@ def main():
         off_by_n = list(off_by_n)
         off_by_n.sort()
 
+        toc = timeit.default_timer()
+
         for o in off_by_n[:10]:
             print("{:s} {:s}".format(o[0],o[1]))
 
         print("Found {0:d} pairs of words that differ by +/-{1:d} in each component.".format(len(off_by_n),d))
+        print("Time: %0.4f"%(toc-tic))
 
 if __name__=="__main__":
     main()
