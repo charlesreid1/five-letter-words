@@ -75,10 +75,10 @@ class TryTrieTree(object):
             s = ""
             s += ">"*depth
             s += " "
-            if depth==4:
+            if True:#depth==4:
                 s += self.get_prefix_from_node(runner)
             s += runner.letter
-            if depth==4:
+            if True:#depth==4:
                 s += ": %d"%(runner.count)
             s += "\n"
 
@@ -228,6 +228,7 @@ class TryTrieTree(object):
         """
         self._bubble_up(self.root)
 
+
     def _bubble_up(self,node):
         if len(node.children)==0:
             # Base case
@@ -244,8 +245,7 @@ class TryTrieTree(object):
             # Now that we've completed leaf node counts, we can do interior node counts.
             # Interior node counts are equal to number of large (>=2) children.
             large_children = [child for child in node.children if child.count >= 2]
-            self.children = large_children
-            self.count = len(self.children)
+            node.count = len(large_children)
 
 
 def trie_search(n):
@@ -255,26 +255,27 @@ def trie_search(n):
 
     perfect_count = 0
     imperfect_count = 0
-    for letter in ['s']: #ALPHABET:
+    for letter in ALPHABET:
 
         tree = TryTrieTree(words)
         tree.set_root(letter)
         tree.assemble()
         tree.bubble_up()
-        print(tree)
+        if tree.root.count >= 2:
 
-        #if tree.root.count>0:
-        #    print("The letter {0:s} has a perfect binary trie in WORDS({1:d}).".format(
-        #        letter, n))
-        #    perfect_count += 1
-        #else:
-        #    print("The letter {0:s} has no perfect binary trie in WORDS({1:d}).".format(
-        #        letter, n))
-        #    imperfect_count += 1
+            print("The letter {0:s} has a perfect binary trie in WORDS({1:d}).".format(
+                letter, n))
+            perfect_count += 1
 
-    #print("")
-    #print("Perfect count: {:d}".format(perfect_count))
-    #print("Imperfect count: {:d}".format(imperfect_count))
+        else:
+
+            print("The letter {0:s} has no perfect binary trie in WORDS({1:d}).".format(
+                letter, n))
+            imperfect_count += 1
+
+    print("")
+    print("Perfect count: {:d}".format(perfect_count))
+    print("Imperfect count: {:d}".format(imperfect_count))
 
 
 
