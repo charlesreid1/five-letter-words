@@ -15,26 +15,13 @@ as the starting letter of sixteen words that
 form a complete binary trie within
 WORDS(n), given n?
 
-NOTE:
-    The bubble up method is not working,
-    because we are not trimming subtrees
-    the way we're supposed to. 
-
-    Children is not being reset correctly.
-
-    Modify print method to print 
-    prefixes and counts for EVERY level.
-
-
 Example trie: 
-
 
    Left side:
                     s
          h               
     e        o
   e   l    r   w
-
 
    Right side:
 
@@ -75,11 +62,9 @@ class TryTrieTree(object):
             s = ""
             s += ">"*depth
             s += " "
-            if True:#depth==4:
-                s += self.get_prefix_from_node(runner)
+            s += self.get_prefix_from_node(runner)
             s += runner.letter
-            if True:#depth==4:
-                s += ": %d"%(runner.count)
+            s += ": %d"%(runner.count)
             s += "\n"
 
             # Base case
@@ -97,18 +82,20 @@ class TryTrieTree(object):
         return final
 
 
-
     def set_root(self,root_letter):
         self.root = Node(root_letter)
 
 
     def get_prefix_from_node(self,node):
+        """Given a node in the trie,
+        return the string prefix that
+        would lead to that node.
+        """
         if node==None:
             return ""
         elif node==self.root:
             return ""
         else:
-            #prefix = node.letter
             prefix = ""
             while node.parent != None:
                 node = node.parent
@@ -141,9 +128,9 @@ class TryTrieTree(object):
             if child.letter == suffix:
                 return child
 
-        # Note: how can we be sure this will end?
-        # prefix is continually whittle down
-        # by 1 each time. 
+        # We know this will end because we handle
+        # the base case of prefix="", and prefix
+        # is cut down by one letter each iteration.
 
 
     def assemble(self):
@@ -219,17 +206,15 @@ class TryTrieTree(object):
         then the parents, so we always 
         know the counts of children
         (or we are on a leaf node).
-
-        The visit function is as follows:
-        - if leaf node, get 4-letter prefix.
-          - count = number of words with that prefix
-        - if interior node, 
-          - self.children = [child for child in children if child.count >= 2]
         """
         self._bubble_up(self.root)
 
 
     def _bubble_up(self,node):
+        """Pre-order depth-first traversal
+        starting at the leaf nodes and proceeding
+        upwards.
+        """
         if len(node.children)==0:
             # Base case
             # Leaf nodes already have counts          
@@ -249,6 +234,7 @@ class TryTrieTree(object):
 
 
 def trie_search(n):
+    verbose = False
 
     words = get_words()
     words = words[:n]
@@ -261,22 +247,45 @@ def trie_search(n):
         tree.set_root(letter)
         tree.assemble()
         tree.bubble_up()
+        #print(tree)
+
         if tree.root.count >= 2:
 
-            print("The letter {0:s} has a perfect binary trie in WORDS({1:d}).".format(
-                letter, n))
+            if verbose:
+                print("The letter {0:s} has a perfect binary trie in WORDS({1:d}).".format(
+                    letter, n))
             perfect_count += 1
 
         else:
 
-            print("The letter {0:s} has no perfect binary trie in WORDS({1:d}).".format(
-                letter, n))
+            if verbose:
+                print("The letter {0:s} has no perfect binary trie in WORDS({1:d}).".format(
+                    letter, n))
             imperfect_count += 1
 
-    print("")
-    print("Perfect count: {:d}".format(perfect_count))
-    print("Imperfect count: {:d}".format(imperfect_count))
+    if verbose:
+        print("")
+        print("Perfect count: {:d}".format(perfect_count))
+        print("Imperfect count: {:d}".format(imperfect_count))
 
+    return perfect_count, imperfect_count
+
+
+def trie_table():
+    """Compute and print a table of
+    number of words n versus number of
+    perfect tries formed.
+    """
+    print("%8s\t%8s"%("n","perfect tries"))
+
+    ns = range(1000,5757,500)
+    for n in ns:
+        p,i = trie_search(n)
+        print("%8d\t%8d"%(n,p))
+
+    n = 5757
+    p,i = trie_search(n)
+    print("%8d\t%8d"%(n,p))
 
 
 if __name__=="__main__":
@@ -287,5 +296,7 @@ if __name__=="__main__":
         if n > 5757:
             n = 5757
 
-    trie_search(n)
+    #_,_ = trie_search(n)
+
+    trie_table()
 
