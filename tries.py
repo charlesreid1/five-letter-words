@@ -233,8 +233,7 @@ class TryTrieTree(object):
             node.count = len(large_children)
 
 
-def trie_search(n):
-    verbose = False
+def trie_search(n, verbose=False):
 
     words = get_words()
     words = words[:n]
@@ -296,7 +295,7 @@ if __name__=="__main__":
         if n > 5757:
             n = 5757
 
-    #_,_ = trie_search(n)
+    _,_ = trie_search(n, verbose=True)
 
-    trie_table()
+    #trie_table()
 
