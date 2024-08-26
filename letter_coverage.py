@@ -1,5 +1,5 @@
 """
-word_coverage.py
+letter_coverage.py
 
 Compute the minimum number of words from five-letter-words
 needed to cover N letters from the alphabet.
