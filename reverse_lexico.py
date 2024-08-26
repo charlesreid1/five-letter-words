@@ -46,6 +46,6 @@ if __name__=="__main__":
     print("-"*40)
     for word in words:
         if(in_reverse_sorted_order(word)):
-            print("Last lexicographically sorted word:")
+            print("Last reverse lexicographically sorted word:")
             print(word)
             break
