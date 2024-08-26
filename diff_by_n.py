@@ -9,12 +9,13 @@ Find pairs of SGB word vectors that differ by +/-n.
 from get_words import get_words
 import timeit
 
+
 def gen_variations(word,fragment,distance,depth,variations):
     """
     Recursive backtracking method to assemble strings
     differing by +/-distance at each position
     """
-    if depth==5:
+    if depth==len(word):
         variations.add(fragment)
     else:
         for d in range(1,distance+1):
@@ -24,15 +25,15 @@ def gen_variations(word,fragment,distance,depth,variations):
                 gen_variations(word,new_fragment,distance,depth+1,variations)
 
 
-def get_all_variations(word,d):
+def get_all_variations(word, distance):
     """
     Return all possible words that differ
-    from `word` by +/-d in each index.
+    from `word` by +/-distance in each index.
     This does not include `word` in the 
     variations.
     """
     word_variations = set()
-    gen_variations(word,'',d,0,word_variations)
+    gen_variations(word,'',distance,0,word_variations)
 
     word_variations = list(word_variations)
     return word_variations
@@ -41,7 +42,7 @@ def get_all_variations(word,d):
 def main():
     """
     Find pairs of SGB word vectors that differ by 
-    +/-d in each component.
+    +/-distance in each component.
     
     To do this, iterate through each word,
     generate the possible candidate matchings,
