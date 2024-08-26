@@ -297,5 +297,5 @@ if __name__=="__main__":
 
     _,_ = trie_search(n, verbose=True)
 
-    #trie_table()
+    trie_table()
 
