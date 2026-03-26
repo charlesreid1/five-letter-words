@@ -1,0 +1,36 @@
+abaft babes
+absit baths
+adder beefs
+ambit blahs
+anger boffs
+anode boned
+bider chefs
+bidet chefs
+biffs cheer
+ghost hints
+Found 38 pairs of words that differ by +/-1 in each component.
+Time: 0.2505
+aback babel
+aback cabal
+abaft babes
+abash cacti
+abide baked
+abide caged
+abide caked
+abler bands
+abler bangs
+abode caned
+Found 525 pairs of words that differ by +/-2 in each component.
+Time: 5.2627
+abaca ceded
+abaci babel
+abaci cabal
+abaci decaf
+abaci decal
+aback babel
+aback cabal
+aback decal
+abaft babes
+abaft bedew
+Found 4982 pairs of words that differ by +/-3 in each component.
+Time: 37.5131
