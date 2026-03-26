@@ -198,7 +198,8 @@ if __name__=="__main__":
         if ws[ix] < ws[min_key]:
             min_key = ix
 
-    solution = list(btsolution(min_key, min_val, words, bt))
-    print("Takes "+str(len(solution))+" words to cover "+str(N)+" letters")
+    solution = list(btsolution(min_key, ws[min_key], words, bt))
+    covered_letters = ", ".join(chr(ord('a') + i) for i in range(N) if bestcoverage_bv[min_key][i])
+    print("Takes "+str(len(solution))+" words to cover "+str(N)+" letters ("+covered_letters+")")
     pprint(solution)
 
