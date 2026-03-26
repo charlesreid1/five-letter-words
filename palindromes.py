@@ -52,7 +52,7 @@ if __name__=="__main__":
         for j in range(i,len(words)):
             if(is_palindrome_pair(words[i],words[j])):
                 # Palindromes shouldn't count as palindrome pairs
-                if(words[i] is not words[j]):
+                if i != j:
                     kpp += 1
                     palindrome_pairs.append((words[i],words[j]))
 
