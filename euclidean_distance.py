@@ -36,8 +36,7 @@ if __name__=="__main__":
 
     eds = []
     for i in range(100):
-        w1 = words[random.randint(1,5757)]
-        w2 = words[random.randint(1,5757)]
+        w1, w2 = random.sample(words, 2)
         ed = euclidean_distance(w1,w2)
         eds.append((w1,w2,ed))
 
