@@ -1,0 +1,5 @@
+----------------------------------------
+Near Palindromes: 
+
+going, seeds, tight, trust, suits, sends, plump, slums, sighs, erase, serfs, soaps, sewer, soups, sever, slams, scabs, moron, ceded, scads, suets, fugue, seder, tryst, educe, twixt, tutus, shags, slims, abaca, anima, celeb, selfs, scuds, tikis, topos, rajas
+The number of near-palindromes is 37

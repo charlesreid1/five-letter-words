@@ -1,0 +1,15 @@
+----------------------------------------
+Number of words with 1 letters: 0
+
+----------------------------------------
+Number of words with 2 letters: 4
+mamma, ahhhh, esses, ohhhh
+----------------------------------------
+Number of words with 3 letters: 163
+added, seems, sense, level, teeth
+----------------------------------------
+Number of words with 4 letters: 1756
+which, there, these, where, three
+----------------------------------------
+Number of words with 5 letters: 3834
+their, about, would, other, words

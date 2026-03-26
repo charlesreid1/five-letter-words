@@ -1,0 +1,41 @@
+The letter a has no perfect binary trie in WORDS(5757).
+The letter b has a perfect binary trie in WORDS(5757).
+The letter c has a perfect binary trie in WORDS(5757).
+The letter d has a perfect binary trie in WORDS(5757).
+The letter e has no perfect binary trie in WORDS(5757).
+The letter f has a perfect binary trie in WORDS(5757).
+The letter g has no perfect binary trie in WORDS(5757).
+The letter h has a perfect binary trie in WORDS(5757).
+The letter i has no perfect binary trie in WORDS(5757).
+The letter j has no perfect binary trie in WORDS(5757).
+The letter k has no perfect binary trie in WORDS(5757).
+The letter l has a perfect binary trie in WORDS(5757).
+The letter m has a perfect binary trie in WORDS(5757).
+The letter n has no perfect binary trie in WORDS(5757).
+The letter o has no perfect binary trie in WORDS(5757).
+The letter p has a perfect binary trie in WORDS(5757).
+The letter q has no perfect binary trie in WORDS(5757).
+The letter r has a perfect binary trie in WORDS(5757).
+The letter s has a perfect binary trie in WORDS(5757).
+The letter t has a perfect binary trie in WORDS(5757).
+The letter u has no perfect binary trie in WORDS(5757).
+The letter v has no perfect binary trie in WORDS(5757).
+The letter w has a perfect binary trie in WORDS(5757).
+The letter x has no perfect binary trie in WORDS(5757).
+The letter y has no perfect binary trie in WORDS(5757).
+The letter z has no perfect binary trie in WORDS(5757).
+
+Perfect count: 12
+Imperfect count: 14
+       n	perfect tries
+    1000	       1
+    1500	       1
+    2000	       1
+    2500	       1
+    3000	       3
+    3500	       3
+    4000	       4
+    4500	       6
+    5000	      11
+    5500	      12
+    5757	      12

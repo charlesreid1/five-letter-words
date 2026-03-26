@@ -1,0 +1,2 @@
+Takes 8 words to cover 15 letters (a, b, c, d, e, f, g, h, i, j, k, l, m, n, o)
+['which', 'their', 'about', 'could', 'after', 'right', 'think', 'major']
