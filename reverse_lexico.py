@@ -10,14 +10,7 @@ Find more words whose letters appear in reverse lexicographic order.
 from get_words import get_words
 
 def in_reverse_sorted_order(word):
-    chars = list(word)
-    # Note: reversed returns a generator, 
-    # so we have to pass it to list() 
-    # to explicitly enumerate the reversed results.
-    if(str(chars)==str(list(reversed(sorted(chars))))):
-        return True
-    else:
-        return False
+    return all(a >= b for a, b in zip(word, word[1:]))
 
 if __name__=="__main__":
 
@@ -25,27 +18,18 @@ if __name__=="__main__":
 
     words = sorted(words)
 
-    count = 0
+    sorted_words = [w for w in words if in_reverse_sorted_order(w)]
+
     print("-"*40)
     print("ALL lexicographically reversed words:")
-    for word in words:
-        if(in_reverse_sorted_order(word)):
-            print(word)
-            count += 1
-    print("{0:d} total.".format(count))
+    for word in sorted_words:
+        print(word)
+    print("{0:d} total.".format(len(sorted_words)))
 
     print("-"*40)
-    for word in words:
-        if(in_reverse_sorted_order(word)):
-            print("First reverse lexicographically sorted word:")
-            print(word)
-            break
-
-    words.reverse()
+    print("First reverse lexicographically sorted word:")
+    print(sorted_words[0])
 
     print("-"*40)
-    for word in words:
-        if(in_reverse_sorted_order(word)):
-            print("Last reverse lexicographically sorted word:")
-            print(word)
-            break
+    print("Last reverse lexicographically sorted word:")
+    print(sorted_words[-1])

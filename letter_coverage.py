@@ -194,13 +194,12 @@ if __name__=="__main__":
     ones_bv_indices = [k for k,v in enumerate(ones_bv) if v==max(ones_bv)]
 
     min_key = ones_bv_indices[0]
-    min_val = ones_bv[ones_bv_indices[0]]
-    for ix in reversed(ones_bv_indices[1:]):
-        if(ones_bv[ix] < min_key):
+    for ix in ones_bv_indices[1:]:
+        if ws[ix] < ws[min_key]:
             min_key = ix
-            min_val = ones_bv[ix]
 
-    solution = list(btsolution(min_key, min_val, words, bt))
-    print("Takes "+str(len(solution))+" words to cover "+str(N)+" letters")
+    solution = list(btsolution(min_key, ws[min_key], words, bt))
+    covered_letters = ", ".join(chr(ord('a') + i) for i in range(N) if bestcoverage_bv[min_key][i])
+    print("Takes "+str(len(solution))+" words to cover "+str(N)+" letters ("+covered_letters+")")
     pprint(solution)
 

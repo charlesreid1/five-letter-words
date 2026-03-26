@@ -34,8 +34,6 @@ Example trie:
 
 
 ALPHABET = "abcdefghijklmnopqrstuvwxyz"
-FIVE = 5
-
 
 class Node(object):
     def __init__(self, letter, count=0):
@@ -128,9 +126,7 @@ class TryTrieTree(object):
             if child.letter == suffix:
                 return child
 
-        # We know this will end because we handle
-        # the base case of prefix="", and prefix
-        # is cut down by one letter each iteration.
+        raise ValueError("Prefix '{}' not found in trie".format(prefix))
 
 
     def assemble(self):
@@ -173,7 +169,7 @@ class TryTrieTree(object):
                 # creating new child or introducing
                 # parent and child, b/c the "new child"
                 # is the root (already exists).
-                pass
+                new_child = self.root
 
             else:
                 # Otherwise, create the new child,

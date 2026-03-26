@@ -8,32 +8,19 @@ Find SGB words that are near-palindromes
 (edit distance of one or two letters away from a palindrome).
 """
 from get_words import get_words
-from euclidean_distance import euclidean_distance
-from pprint import pprint
-
 def is_near_palindrome(word,lo,hi):
-    d1 = euclidean_distance(word[0],word[4])
-    d2 = euclidean_distance(word[1],word[3])
-
-    if( (d1+d2) > lo and (d1+d2) <= hi ):
-        return True
-
-    return False
+    d1 = abs(ord(word[0]) - ord(word[4]))
+    d2 = abs(ord(word[1]) - ord(word[3]))
+    return lo < (d1 + d2) <= hi
 
 if __name__=="__main__":
     words = get_words()
-
-    knp = 0
-    near_palindromes = []
 
     # Euclidean distance tolerance
     lo = 0.0
     hi = 1.0
 
-    for i in range(len(words)):
-        if(is_near_palindrome(words[i],lo,hi)):
-            knp += 1
-            near_palindromes.append(words[i])
+    near_palindromes = [w for w in words if is_near_palindrome(w, lo, hi)]
 
     print("-"*40)
     print("Near Palindromes: \n")
