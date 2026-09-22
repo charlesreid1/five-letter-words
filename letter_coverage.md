@@ -11,14 +11,13 @@ the charlesreid1.com wiki.
 Fix N and take the first N letters of the alphabet, `a` through the
 Nth letter. A word *covers* the letters it contains. The question is the
 minimum number of words from WORDS(1000), the thousand most common
-five-letter words, whose union covers all N letters. The script runs
-with N = 15, so the target is `a` through `o`.
+five-letter words, whose union covers all N letters. The script's
+headline case is N = 15, the letters `a` through `o`.
 
-`word2bitvector` turns a word into a length-N boolean array with a 1 at
-each letter the word contains; letters past the Nth are dropped, which
-is what the `IndexError` guard does. The union of two words' coverage is
-the logical OR of their vectors and the number of letters covered is
-the number of 1s.
+`word2bitvector` turns a word into an N-bit integer with bit i set when
+the word contains the ith letter; letters past the Nth are ignored. The
+union of two words' coverage is the bitwise OR of their vectors and the
+number of letters covered is the popcount.
 
 This is the set cover problem. The universe is the N letters, each word
 is a subset of size at most 5, and we want the smallest subfamily whose
@@ -26,85 +25,81 @@ union is the universe. Set cover is NP-hard in general, but with a
 universe of at most 26 elements the instances here are small enough to
 solve exactly.
 
-## What the script computes
+## Why the obvious dynamic program fails
 
-The script processes the words in list order and, for each word i,
-stores a single state describing the best chain of words that ends at i:
+A tempting approach is to process the words in order and keep, for each
+word i, the best chain of words ending at i: its coverage vector, its
+letter count and its length, extending the best chain ending at some
+earlier j. That recurrence assumes optimal substructure, and set cover
+does not have it. The chain kept for j is the one covering the most
+letters, but the right predecessor for i may be a chain that covers
+fewer letters and complements word i better. Keeping one state per j
+throws those alternatives away. On WORDS(1000) such a program reports 8
+words for N = 15 and 15 words for the full alphabet, twice the true
+minimum in both cases.
 
-- `bestcoverage_bv[i]`, the coverage vector of that chain;
-- `ones_bv[i]`, its number of covered letters;
-- `ws[i]`, its number of words;
-- `bt[i]`, the previous word in the chain, for backtracking.
+Exact dynamic programming over the 2^N subsets of covered letters does
+work (2^15 = 32768 states, one pass per word), but a branch and bound
+search is simpler and fast enough for N = 26, where 2^26 states would
+not be.
 
-Word 0 starts a chain by itself. For each later word i the script first
-assumes i stands alone, then tries every earlier word j as a
-predecessor: the candidate is `wi_bv OR bestcoverage_bv[j]` with
-`ws[j] + 1` words, and it replaces the current state for i if it covers
-more letters, or the same number with fewer words. At the end the word
-with the most covered letters (fewest words among ties) is chosen and
-the chain is read back through `bt`.
+## Branch and bound
 
-For N = 15 the script reports
+`min_cover` first collapses the words to one representative per distinct
+coverage pattern, then searches:
 
-    Takes 8 words to cover 15 letters (a, ..., o)
-    which their about could after right think major
+1. If every coverable letter is covered, record the solution if it is
+   the shortest so far.
+2. Otherwise bound: each word adds at most 5 letters, so if the words
+   chosen so far plus ⌈uncovered / 5⌉ cannot beat the best solution,
+   stop.
+3. Otherwise pick the uncovered letter contained in the fewest words
+   (the most constrained choice), and branch on each of those words.
 
-Cost: every pair j < i is examined once, N-length OR each time, so
-O(n² N) with n = 1000 words.
+Branching on the rarest letter is what makes this fast. Only 4 of the
+5757 words contain `x` as a first letter, 138 contain it anywhere, and
+`j`, `q`, `z` are similarly scarce, so the top of the search tree has a
+few dozen branches rather than a thousand. The whole table below,
+twenty-two values of N plus two full-alphabet runs, takes under two
+seconds.
 
-## Why this is not the minimum
+## Results
 
-The recurrence assumes optimal substructure: that the best chain ending
-at i extends the best chain ending at some j. That fails here. The chain
-kept for j is the one covering the *most* letters, but the right
-predecessor for i may be a chain that covers fewer letters and
-complements word i better. Since only one vector is kept per j, those
-alternatives are thrown away. The result is a heuristic that always
-covers all N letters (any chain can be extended until it does) but uses
-more words than necessary. Every answer it produces starts with `which`,
-the first word in the list, because that is the seed every chain is
-built on.
+Minimum covers of `a` through the Nth letter from WORDS(1000):
 
-An exact solver settles the question. Branch on the uncovered letter
-that appears in the fewest remaining words, try each of those words,
-and prune when the words chosen so far plus ⌈uncovered / 5⌉ cannot beat
-the best cover found. Because the universe is tiny this finishes in a
-fraction of a second for every N. Comparing the two on WORDS(1000):
+| N | words | a minimum cover |
+|---|---|---|
+| 5 | 2 | about cried |
+| 6 | 2 | about faced |
+| 7 | 2 | being faced |
+| 8 | 3 | right about faced |
+| 10 | 3 | judge about chief |
+| 12 | 3 | judge black fight |
+| 13 | 4 | major right black field |
+| 15 | 4 | major think globe faced |
+| 16 | 4 | major being flock hoped |
+| 17 | 5 | quite major being flock hoped |
+| 20 | 5 | quite major black fight spend |
+| 22 | 5 | quick major verbs flung depth |
+| 24 | 6 | quite jokes fixed woven climb graph |
+| 25 | 6 | quite jumps fixed heavy black wrong |
+| 26 | 7 | dozen quite jumps waxes every black fight |
 
-| N | script | minimum | a minimum cover |
-|---|---|---|---|
-| 5 | 2 | 2 | about cried |
-| 6 | 4 | 2 | about faced |
-| 7 | 5 | 2 | being faced |
-| 8 | 5 | 3 | right about faced |
-| 10 | 6 | 3 | judge about chief |
-| 12 | 7 | 3 | judge black fight |
-| 13 | 8 | 4 | major right black field |
-| 15 | 8 | 4 | major think globe faced |
-| 16 | 8 | 4 | major being flock hoped |
-| 17 | 11 | 5 | quite major being flock hoped |
-| 20 | 11 | 5 | quite major black fight spend |
-| 22 | 12 | 5 | quick major verbs flung depth |
-| 24 | 13 | 6 | quite jokes fixed woven climb graph |
-| 25 | 14 | 6 | quite jumps fixed heavy black wrong |
-| 26 | 15 | 7 | dozen quite jumps waxes every black fight |
-
-The 15-letter case the script prints, 8 words, is twice the true
-minimum of 4: `major think globe faced` covers `a` through `o` exactly
-(and `t` and `k` besides). The gap widens with N; the whole alphabet
-needs 7 words from WORDS(1000), where the script uses 15.
+Minimum covers are rarely unique. `major think globe faced` covers `a`
+through `o` (and `t` and `k` besides); so does `major right blank
+faced`.
 
 ## Lower bounds and the full list
 
-Five letters per word gives the trivial bound of ⌈N / 5⌉ words. For
-N = 26 that is 6, and the full SGB list achieves it:
+Five letters per word gives the bound ⌈N / 5⌉. For N = 26 that is 6,
+and the full SGB list achieves it:
 
     quite jumps whizz bronx gyved flack
 
 No five SGB words cover 25 letters. Five words have exactly 25 letter
 slots, so that would require five words with no letter repeated
 anywhere among them, and the list contains no such quintuple. The
-restriction to WORDS(1000) costs one more word (7) because the rare
-letters `j`, `q`, `x`, `z` sit in only a handful of common words
-(`judge`, `jumps`, `quite`, `waxes`, `dozen`), and those few words
-overlap heavily in their other letters.
+restriction to WORDS(1000) costs one more word (7): the rare letters
+`j`, `q`, `x`, `z` occur in only a handful of common words (`judge`,
+`jumps`, `quite`, `waxes`, `dozen`), and those overlap heavily in their
+other letters.
