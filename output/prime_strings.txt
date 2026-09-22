@@ -1,0 +1,22 @@
+----------------------------------------
+Exercise 101(e): prime factors of the first 40 digits of pi
+3141592653589793238462643383279502884197
+  3
+  1415926535897932384626433832795
+  02884197
+----------------------------------------
+Cross-check: Duval vs. definition vs. greedy merge on random strings
+8000 random strings factored consistently.
+----------------------------------------
+Exercise 104: prime five-letter words in the SGB
+5757 words total.
+1274 prime, 4483 nonprime.
+Eq. (60) estimate, 1/5 of all words: 1151
+Smallest nonprime: abaca
+Largest prime:     rutty
+First few nonprimes: abaca, agora, ahead
+Last few primes:     rusts, rusty, rutty
+  prime is not prime, factors ['pr', 'im', 'e']
+  lowly is prime, factors ['lowly']
+  first is prime, factors ['first']
+  knuth is not prime, factors ['knut', 'h']
