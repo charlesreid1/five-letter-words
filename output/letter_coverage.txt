@@ -1,2 +1,32 @@
-Takes 8 words to cover 15 letters (a, b, c, d, e, f, g, h, i, j, k, l, m, n, o)
-['which', 'their', 'about', 'could', 'after', 'right', 'think', 'major']
+Takes 4 words to cover 15 letters (a, b, c, d, e, f, g, h, i, j, k, l, m, n, o) from WORDS(1000)
+['major', 'think', 'globe', 'faced']
+
+Takes 7 words to cover 26 letters (a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v, w, x, y, z) from WORDS(1000)
+['dozen', 'quite', 'jumps', 'waxes', 'every', 'black', 'fight']
+
+Takes 6 words to cover 26 letters (a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v, w, x, y, z) from WORDS(5757)
+['quite', 'jumps', 'whizz', 'bronx', 'gyved', 'flack']
+
+  N  words  cover
+  5      2  about cried
+  6      2  about faced
+  7      2  being faced
+  8      3  right about faced
+  9      3  about right faced
+ 10      3  judge about chief
+ 11      3  judge fight black
+ 12      3  judge black fight
+ 13      4  major right black field
+ 14      4  major right blank faced
+ 15      4  major think globe faced
+ 16      4  major being flock hoped
+ 17      5  quite major being flock hoped
+ 18      5  quite major black found graph
+ 19      5  quite major black fight spend
+ 20      5  quite major black fight spend
+ 21      5  quite major black fight spend
+ 22      5  quick major verbs flung depth
+ 23      5  quick jumps vowel fight brand
+ 24      6  quite jokes fixed woven climb graph
+ 25      6  quite jumps fixed heavy black wrong
+ 26      7  dozen quite jumps waxes every black fight

@@ -1,14 +1,15 @@
+"""
+euclidean_distance.py
+
+Compute the Euclidean distance between 5-letter words, treating each
+word as a vector of letter indices a = 0, ..., z = 25.
+"""
 import random, math, operator
 from pprint import pprint 
 from get_words import get_words
 
 random.seed(1337)
 
-"""
-euclidean_dist.py 
-
-Compute euclidean distance between 5-letter words.
-"""
 
 def euclidean_distance(word1, word2):
     v1 = word2vec(word1)

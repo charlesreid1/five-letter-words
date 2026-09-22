@@ -12,59 +12,70 @@ The list of words comes from [[1]](http://www-cs-faculty.stanford.edu/~knuth/sgb
 ## Get Words
 
 A Python program that contains a method for getting all of the five letter words from a file,
-and that's about it.
+and that's about it. Notes on the word list itself (size, frequency order, WORDS(n)) are in ```get_words.md```.
+
+```stats.py``` - letter and bigram frequency counts for the whole list. Theory and tables in ```stats.md```.
 
 ## Warm Up Exercises
 
-Exercises 26-37 of Knuth's Volume 4 Fascile 0 are intended as a warm up to get to know
+Exercises 26-37 of Knuth's Volume 4 Fascicle 0 are intended as a warm up to get to know
 the SGB five letter word list. Solutions to these exercises are listed below.
 
 ```distinct.py```- computes the number of SGB words containing exactly k distinct letters.
+The Stirling-number baseline and the counts are in ```distinct.md```.
 
-```diff_by_one_fixed.py``` - (**fixed 2019-03-09**) computes the number of words in the SGB
-that are off by a single letter in each position. An example is `rover` and `spuds`.
-Each corresponding letter is only different by one: `r -> s`, `o->p`, and so on.
-This uses recursive backtracking to generate possible matches for each word, and 
-uses a hash table to check for their existence in the original word set.
+```diff_by_n.py``` - computes the pairs of SGB words that are off by a small shift
+in every letter position. An example is `rover` and `spuds`:
+each corresponding letter differs by exactly one, `r -> s`, `o -> p`, and so on.
+The script uses recursive backtracking to generate the candidate matches for each word
+and a hash set to check for their existence in the word list, then repeats for shifts
+of up to 2 and up to 3.
 
-There are 38 such pairs in the SGB.
+There are 38 such pairs in the SGB for a shift of 1, 525 for shifts up to 2,
+and 4982 for shifts up to 3. The generate-and-look-up argument is in ```diff_by_n.md```.
 
 Also see [Five Letter Words](https://charlesreid1.com/wiki/Five_Letter_Words)
-on the charlesreid1.com wiki.
-
-```diff_by_n_fixed.py``` - (added 2019-03-10.) using the corrected approach (above) to
-computing differences by 1, this generalizes the calculation to words that are different
-by a distance `d` for each letter position.
-
-Also see [Five Letter Words: Part 4: Revisiting Diff by One](https://charlesreid1.github.io/five-letter-words-part-4-revisiting-diff-by-one.html)
+on the charlesreid1.com wiki, and
+[Five Letter Words: Part 4: Revisiting Diff by One](https://charlesreid1.github.io/five-letter-words-part-4-revisiting-diff-by-one.html)
 (blog post) on [charlesreid1.github.io](https://charlesreid1.github.io).
 
-```euclidean_distance.py``` - computes the euclidean distance between two words. This uses
-the traditional Euclidean distance definition but reinterprets distance to mean edit distance.
+```euclidean_distance.py``` - computes the Euclidean distance between two words, treating
+each word as a vector of five letter indices (a = 0, ..., z = 25). This is a geometric
+distance in letter space, not the string edit distance. See ```euclidean_distance.md```.
 
 ```lexico.py``` - find words that are sorted by lexicographic order (front to back, a-z). 
+See ```lexico.md```.
 
 ```palindromes.py``` - look for five letter words that are either a palindrome, or a palindrome pair.
+See ```palindromes.md```.
 
 ### Variations
 
-```diff_by_n.py``` - computes words in SGB that have an edit distance of n.
+```near_palindromes.py``` - variation on ```palindromes.py``` that finds words one alphabet step
+away from a palindrome. See ```near_palindromes.md```.
 
 ```reverse_lexico.py``` - variation on ```lexico.py``` that finds words whose letters are in 
-reverse lexicographic order.
+reverse lexicographic order. See ```reverse_lexico.md```.
 
 ## Letter Coverage
 
-```letter_coverage.py``` - computes coverage of the alphabet (minimum number of words required 
-to provide X letters of the alphabet)
+```letter_coverage.py``` - computes coverage of the alphabet: the minimum number of words
+required to cover the first N letters.
 
 Knuth mentions, in the text, a couple of facts about how many words cover how much
-of the alphabet. We authored a dynamic program to compute precisely this - given a 
-number of letters N from the alphabet, this program computes the minimum number of 
-words it takes to cover all N letters.
+of the alphabet. This is a small set cover problem, solved exactly by branch and bound
+on the rarest uncovered letter. Four words from WORDS(1000) cover `a` through `o`
+(`major think globe faced`), seven cover the whole alphabet, and six words from the full
+list do (`quite jumps whizz bronx gyved flack`). See ```letter_coverage.md```.
 
 Also see [Letter Coverage](https://charlesreid1.com/wiki/Letter_Coverage)
 page on the charlesreid1.com wiki.
+
+## Tries
+
+```tries.py``` - solves exercise 35 of Volume 4A Section 7: which letters can start sixteen
+words that form a complete binary trie within WORDS(n)? Twelve letters do for the full list,
+and ```s``` is the only one that does within WORDS(1000). See ```tries.md```.
 
 ## Prime Strings
 

@@ -48,8 +48,6 @@ def main():
     generate the possible candidate matchings,
     and if they exist, add the pair to a set.
     """
-    words = get_words()
-    #words = words[:1000]
     words = set(get_words())
 
     for d in [1,2,3]:
