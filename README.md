@@ -59,16 +59,14 @@ reverse lexicographic order. See ```reverse_lexico.md```.
 
 ## Letter Coverage
 
-```letter_coverage.py``` - computes coverage of the alphabet (minimum number of words required 
-to provide X letters of the alphabet)
+```letter_coverage.py``` - computes coverage of the alphabet: the minimum number of words
+required to cover the first N letters.
 
 Knuth mentions, in the text, a couple of facts about how many words cover how much
-of the alphabet. We authored a dynamic program to compute precisely this - given a 
-number of letters N from the alphabet, this program computes the minimum number of 
-words it takes to cover all N letters.
-
-The dynamic program is a heuristic; ```letter_coverage.md``` explains why and tabulates
-the true minimum covers next to the script's answers.
+of the alphabet. This is a small set cover problem, solved exactly by branch and bound
+on the rarest uncovered letter. Four words from WORDS(1000) cover `a` through `o`
+(`major think globe faced`), seven cover the whole alphabet, and six words from the full
+list do (`quite jumps whizz bronx gyved flack`). See ```letter_coverage.md```.
 
 Also see [Letter Coverage](https://charlesreid1.com/wiki/Letter_Coverage)
 page on the charlesreid1.com wiki.
