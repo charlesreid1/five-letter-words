@@ -45,7 +45,7 @@ exactly once (`ml`, for instance). A uniform model would give
 
 `es`, `er` and `ed` are the English inflectional endings again; 302
 words end in `ed`. The counter does not record position, so `es` in
-`bakes` and in `eskar` land in the same bucket.
+`bakes` and in `beset` land in the same bucket.
 
 ## Why it is here
 

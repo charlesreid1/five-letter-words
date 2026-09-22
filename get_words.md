@@ -40,8 +40,12 @@ devil`).
 
 `get_words()` opens the file and returns `f.read().splitlines()`, a
 list of 5757 strings with the newlines stripped. `readlines()` would
-keep a trailing `\n` on every word, which would silently break every
-comparison of `word[4]` downstream, so the script uses `splitlines()`.
+keep a trailing `\n` on every word, which would silently corrupt the
+scripts downstream: `distinct.py` would count the newline as a sixth
+letter, `lexico.py` would reject every word because `\n` sorts before
+`a`, and the set lookups in `diff_by_n.py` would never match. Index
+based checks like `word[0] == word[4]` would still pass, which is what
+makes the bug silent. So the script uses `splitlines()`.
 
 Every other script imports this one function and does its work on the
 resulting list, or on `set(get_words())` when it needs O(1) membership

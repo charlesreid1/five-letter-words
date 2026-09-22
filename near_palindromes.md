@@ -25,9 +25,8 @@ The script declares w a near palindrome when
     lo < D(w) ≤ hi,   with lo = 0 and hi = 1.
 
 So as configured it selects the words with D(w) = 1: one mirror pair
-matches exactly and the other is off by a single alphabet step. The
-docstring speaks of "one or two letters"; raising `hi` to 2 admits the
-D = 2 words as well.
+matches exactly and the other is off by a single alphabet step.
+Raising `hi` to 2 admits the D = 2 words as well.
 
 ## Results
 
