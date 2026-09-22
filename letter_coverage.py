@@ -32,13 +32,6 @@ def word2bitvector(word, N):
     return bv
 
 
-def printbv(bv, N):
-    """
-    Pretty printing for bit vector: a 1 for each letter covered, a to z.
-    """
-    return "".join("1" if bv >> i & 1 else "0" for i in range(N))
-
-
 def popcount(bv):
     return bin(bv).count("1")
 

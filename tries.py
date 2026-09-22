@@ -197,7 +197,7 @@ class TryTrieTree(object):
     def bubble_up(self):
         """Do a depth-first traversal of the
         entire trytrietree, pruning as we go.
-        This is a pre-order traversal,
+        This is a post-order traversal,
         meaning we traverse children first,
         then the parents, so we always 
         know the counts of children
@@ -207,7 +207,7 @@ class TryTrieTree(object):
 
 
     def _bubble_up(self,node):
-        """Pre-order depth-first traversal
+        """Post-order depth-first traversal
         starting at the leaf nodes and proceeding
         upwards.
         """
@@ -219,7 +219,7 @@ class TryTrieTree(object):
 
         else:
             # Recursive case
-            # Pre-order traversal: visit/bubble up children first
+            # Post-order traversal: visit/bubble up children first
             for child in node.children:
                 self._bubble_up(child)
 

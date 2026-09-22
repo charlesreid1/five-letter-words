@@ -4,8 +4,9 @@ near_palindromes.py
 Donald Knuth, Art of Computer Programming, Volume 4 Facsimile 0
 Variation on Exercise #29
 
-Find SGB words that are near-palindromes
-(edit distance of one or two letters away from a palindrome).
+Find SGB words that are near-palindromes: one mirror pair of letters
+matches and the other is a single alphabet step apart, so the word is
+one alphabet step away from a palindrome. See near_palindromes.md.
 """
 from get_words import get_words
 def is_near_palindrome(word,lo,hi):
