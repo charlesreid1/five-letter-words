@@ -2,7 +2,7 @@
 prime_strings.py
 
 Donald Knuth, Art of Computer Programming, Volume 4A, Section 7.2.1.1
-Exercises #101, #102 and #104
+Exercises #101, #102, #103 and #104
 
 Definition P (p. 305): a string is prime if it is nonempty and
 lexicographically less than all of its proper suffixes. (Lyndon word.)
@@ -14,6 +14,9 @@ of the first 40 digits of pi.
 Exercise 102: deduce L_m(n), the number of m-ary primes of length n, from
 the unique factorization theorem. Answer: eq. (60), L_m(n) =
 (1/n) sum_{d | n} mu(d) m^(n/d).
+
+Exercise 103: use eq. (59) to prove Fermat's theorem m^p = m (mod p).
+When n = p is prime, (59) reads m + p L_m(p) = m^p.
 
 Exercise 104: about 1/n of all n-letter words are prime. How many of the
 5757 SGB five-letter words are prime? Smallest nonprime? Largest prime?
@@ -187,6 +190,22 @@ if __name__ == "__main__":
     print("L_26(5) = {0:d} of the 26^5 = {1:d} five-letter strings are prime, "
           "fraction {2:.4f}".format(num_primes(26, 5), 26 ** 5,
                                     num_primes(26, 5) / 26 ** 5))
+
+    print("-" * 40)
+    print("Exercise 103: Fermat's theorem from eq. (59)")
+    print("For prime p, (59) says m + p L_m(p) = m^p, so m^p - m = p L_m(p).")
+    small_primes = [p for p in range(2, 40) if all(p % q for q in range(2, p))]
+    fermat_checks = 0
+    for m in range(1, 21):
+        for p in small_primes:
+            assert m ** p - m == p * num_primes(m, p), (m, p)
+            assert (m ** p - m) % p == 0, (m, p)
+            fermat_checks += 1
+    print("  m^p - m = p L_m(p) verified for m <= 20 and primes p < 40 "
+          "({0:d} cases)".format(fermat_checks))
+    for m, p in ((2, 7), (3, 5), (10, 3)):
+        print("  m={0:d}, p={1:d}: {0:d}^{1:d} - {0:d} = {2:d} = {1:d} * {3:d}".format(
+            m, p, m ** p - m, num_primes(m, p)))
 
     print("-" * 40)
     print("Exercise 104: prime five-letter words in the SGB")

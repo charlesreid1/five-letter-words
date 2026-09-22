@@ -19,6 +19,13 @@ Checks:
   Euler product prod (1 - z^n)^(-L_m(n)) = 1/(1 - mz) through z^12 for m = 2, 3
 L_26(5) = 2376270 of the 26^5 = 11881376 five-letter strings are prime, fraction 0.2000
 ----------------------------------------
+Exercise 103: Fermat's theorem from eq. (59)
+For prime p, (59) says m + p L_m(p) = m^p, so m^p - m = p L_m(p).
+  m^p - m = p L_m(p) verified for m <= 20 and primes p < 40 (240 cases)
+  m=2, p=7: 2^7 - 2 = 126 = 7 * 18
+  m=3, p=5: 3^5 - 3 = 240 = 5 * 48
+  m=10, p=3: 10^3 - 10 = 990 = 3 * 330
+----------------------------------------
 Exercise 104: prime five-letter words in the SGB
 5757 words total.
 1274 prime, 4483 nonprime.

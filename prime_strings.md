@@ -1,7 +1,7 @@
 # Prime strings and unique factorization
 
 Knuth, *The Art of Computer Programming*, Volume 4A, Section 7.2.1.1,
-exercises 101, 102 and 104. Code: `prime_strings.py`.
+exercises 101, 102, 103 and 104. Code: `prime_strings.py`.
 
 ## Definitions
 
@@ -168,6 +168,26 @@ Since the d = 1 term dominates, L_m(n) ≈ mⁿ/n: about 1/n of all strings
 are prime, which is the estimate exercise 104 uses. For the SGB alphabet
 L₂₆(5) = (26⁵ - 26)/5 = 2376270, exactly one fifth of 26⁵ after
 discarding the 26 constant strings.
+
+## Exercise 103: Fermat's theorem from eq. (59)
+
+Eq. (59) says Σ_{d | n} d L_m(d) = mⁿ for all m, n ≥ 1. When n = p is a
+prime number its only divisors are 1 and p, and L_m(1) = m because every
+single character is a prime string. So (59) collapses to
+
+    m + p L_m(p) = m^p,
+
+and therefore m^p - m = p L_m(p) is a multiple of p. That is Fermat's
+theorem, m^p ≡ m (mod p), proved by counting strings: the m^p strings of
+length p split into the m constant strings and p L_m(p) others, the
+latter falling into L_m(p) classes of p cyclic shifts each.
+
+The script checks m^p - m = p L_m(p) for m ≤ 20 and all primes p < 40.
+Examples:
+
+    2^7 - 2  = 126  = 7 * 18
+    3^5 - 3  = 240  = 5 * 48
+    10^3 - 10 = 990 = 3 * 330
 
 ## Exercise 104: five-letter words
 
