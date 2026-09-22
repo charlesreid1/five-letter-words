@@ -67,8 +67,17 @@ of the alphabet. We authored a dynamic program to compute precisely this - given
 number of letters N from the alphabet, this program computes the minimum number of 
 words it takes to cover all N letters.
 
+The dynamic program is a heuristic; ```letter_coverage.md``` explains why and tabulates
+the true minimum covers next to the script's answers.
+
 Also see [Letter Coverage](https://charlesreid1.com/wiki/Letter_Coverage)
 page on the charlesreid1.com wiki.
+
+## Tries
+
+```tries.py``` - solves exercise 35 of Volume 4A Section 7: which letters can start sixteen
+words that form a complete binary trie within WORDS(n)? Twelve letters do for the full list,
+and ```s``` is the only one that does within WORDS(1000). See ```tries.md```.
 
 ## Prime Strings
 
