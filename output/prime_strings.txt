@@ -1,0 +1,41 @@
+----------------------------------------
+Exercise 101(e): prime factors of the first 40 digits of pi
+3141592653589793238462643383279502884197
+  3
+  1415926535897932384626433832795
+  02884197
+----------------------------------------
+Cross-check: Duval vs. definition vs. greedy merge on random strings
+8000 random strings factored consistently.
+----------------------------------------
+Exercise 102: L_m(n), the number of m-ary primes of length n
+n:          1     2     3     4     5     6     7     8     9    10
+L_2(n):     2     1     2     3     6     9    18    30    56    99
+L_3(n):     3     3     8    18    48   116   312   810  2184  5880
+L_4(n):     4     6    20    60   204   670  2340  8160 29120 104754
+Checks:
+  eq. (60) equals brute-force count in 24 (m, n) cases
+  eq. (59), sum of d L_m(d) over d | n = m^n, holds for m in 2,3,4,10 and n <= 12
+  Euler product prod (1 - z^n)^(-L_m(n)) = 1/(1 - mz) through z^12 for m = 2, 3
+L_26(5) = 2376270 of the 26^5 = 11881376 five-letter strings are prime, fraction 0.2000
+----------------------------------------
+Exercise 103: Fermat's theorem from eq. (59)
+For prime p, (59) says m + p L_m(p) = m^p, so m^p - m = p L_m(p).
+  m^p - m = p L_m(p) verified for m <= 20 and primes p < 40 (240 cases)
+  m=2, p=7: 2^7 - 2 = 126 = 7 * 18
+  m=3, p=5: 3^5 - 3 = 240 = 5 * 48
+  m=10, p=3: 10^3 - 10 = 990 = 3 * 330
+----------------------------------------
+Exercise 104: prime five-letter words in the SGB
+5757 words total.
+1274 prime, 4483 nonprime.
+Eq. (60) estimate, 1/5 of all words: 1151
+Fraction of SGB words that are prime: 0.2213
+Smallest nonprime: abaca
+Largest prime:     rutty
+First few nonprimes: abaca, agora, ahead
+Last few primes:     rusts, rusty, rutty
+  prime is not prime, factors ['pr', 'im', 'e']
+  lowly is prime, factors ['lowly']
+  first is prime, factors ['first']
+  knuth is not prime, factors ['knut', 'h']

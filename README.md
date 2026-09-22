@@ -66,6 +66,20 @@ words it takes to cover all N letters.
 Also see [Letter Coverage](https://charlesreid1.com/wiki/Letter_Coverage)
 page on the charlesreid1.com wiki.
 
+## Prime Strings
+
+```prime_strings.py``` - solves exercises 101, 102, 103 and 104 of Volume 4A Section 7.2.1.1.
+A string is *prime* (a Lyndon word) if it is less than all of its proper suffixes.
+The script factors any string into nonincreasing primes with Duval's linear-time
+algorithm, checks it against a brute-force method, factors the first 40 digits of pi,
+and counts the SGB words that are prime: 1274 of 5757. The smallest nonprime is
+`abaca` and the largest prime is `rutty`.
+
+It also computes the number of m-ary primes of length n from the Euler product
+that the factorization theorem implies, and checks it against brute force, and reads Fermat's theorem off the divisor sum.
+
+Proofs for exercise 101 (a)-(d) and the derivations for 102 and 103 are in ```prime_strings.md```.
+
 # Sources
 
 1. Knuth, Donald. <u>The Stanford GraphBase: A Platform for Combinatorial Computing</u>. New York: ACM Press, 1994. 

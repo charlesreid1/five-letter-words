@@ -11,6 +11,7 @@ SCRIPTS=(
     lexico
     near_palindromes
     palindromes
+    prime_strings
     reverse_lexico
     stats
     tries
