@@ -1,7 +1,7 @@
 # Prime strings and unique factorization
 
 Knuth, *The Art of Computer Programming*, Volume 4A, Section 7.2.1.1,
-exercises 101 and 104. Code: `prime_strings.py`.
+exercises 101, 102 and 104. Code: `prime_strings.py`.
 
 ## Definitions
 
@@ -119,10 +119,61 @@ the output is a factorization into primes (by Definition P), is
 nonincreasing, and agrees with the greedy merge of (b), which by (c) is
 the only possible answer.
 
+## Exercise 102: counting primes from the factorization theorem
+
+Let L_m(n) be the number of m-ary primes of length n. Knuth derives eq.
+(60) in the text from cyclic shifts. Exercise 102 asks for it from
+exercise 101 instead.
+
+A nonincreasing sequence of primes is the same thing as a multiset of
+primes, so exercise 101 says: strings of length n over m letters are in
+bijection with multisets of primes whose lengths sum to n. Count both
+sides with a generating function in z, where z marks one character.
+
+The left side is Σ mⁿ zⁿ = 1/(1 - mz).
+
+On the right, each individual prime λ contributes a factor
+1 + z^|λ| + z^2|λ| + … = 1/(1 - z^|λ|), the choice of how many copies of
+λ the multiset holds. Grouping primes by length gives the Euler product
+
+    1/(1 - mz) = ∏_{n≥1} (1 - zⁿ)^(-L_m(n)).
+
+Take logarithms and expand both sides with -ln(1 - x) = Σ x^k / k:
+
+    Σ_{k≥1} m^k z^k / k = Σ_{n≥1} L_m(n) Σ_{j≥1} z^{nj} / j.
+
+Compare coefficients of z^N. On the right, z^N arises from every pair
+(n, j) with nj = N, and 1/j = n/N:
+
+    m^N / N = (1/N) Σ_{n | N} n L_m(n),  that is  Σ_{d | N} d L_m(d) = m^N.
+
+This is eq. (59), obtained without the cyclic-shift argument. Möbius
+inversion (exercise 4.5.3-28(a), or 4.6.2-4 which Knuth cites for the
+same product) then gives eq. (60):
+
+    L_m(n) = (1/n) Σ_{d | n} μ(d) m^{n/d}.
+
+The script computes L_m(n) this way in `num_primes`, and confirms it
+three independent ways: brute-force counting from Definition P for small
+m and n, the divisor sum (59), and expanding the Euler product through
+z¹² to recover the coefficients mⁿ.
+
+| n | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 |
+|---|---|---|---|---|---|---|---|---|---|---|
+| L₂(n) | 2 | 1 | 2 | 3 | 6 | 9 | 18 | 30 | 56 | 99 |
+| L₃(n) | 3 | 3 | 8 | 18 | 48 | 116 | 312 | 810 | 2184 | 5880 |
+| L₄(n) | 4 | 6 | 20 | 60 | 204 | 670 | 2340 | 8160 | 29120 | 104754 |
+
+Since the d = 1 term dominates, L_m(n) ≈ mⁿ/n: about 1/n of all strings
+are prime, which is the estimate exercise 104 uses. For the SGB alphabet
+L₂₆(5) = (26⁵ - 26)/5 = 2376270, exactly one fifth of 26⁵ after
+discarding the 26 constant strings.
+
 ## Exercise 104: five-letter words
 
 Formula (60) says about 1/n of all n-letter strings are prime, so about
-1/5 of the 5757 SGB words, roughly 1151. Running `is_prime` over the
+1/5 of the 5757 SGB words, roughly 1151. Real words run a little higher,
+at 1274, a fraction of 0.2213. Running `is_prime` over the
 list:
 
 | | count |
